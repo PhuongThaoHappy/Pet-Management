@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniPet - Giao Diện Nhân Viên</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f5f0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #d1e7dd;
+            padding: 20px 0;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            color: #28a745;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #c2e0d4;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .sidebar ul li.active {
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .sidebar ul li i {
+            font-size: 20px;
+            color: inherit;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-image: url('../anh/nhanVien.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-color: #f0f0f0;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px 0 0 15px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3);
+            z-index: 1;
+        }
+
+        .content-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 50px 20px;
+            color: #333;
+        }
+
+        .content-inner h1 {
+            font-size: 36px;
+            color: #28a745;
+            margin: 0 0 20px;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-inner .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+        }
+
+        .stats .stat-item {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+
+        .stats .stat-item h3 {
+            color: #28a745;
+            font-size: 20px;
+            margin: 0 0 10px;
+        }
+
+        .stats .stat-item p {
+            color: #555;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+        }
+
+        .action-btn:hover {
+            background-color: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        .action-btn:active {
+            background-color: #27ae60;
+            transform: translateY(0);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 150px;
+            }
+            .sidebar ul li {
+                font-size: 16px;
+                padding: 10px 15px;
+            }
+            .sidebar ul li i {
+                font-size: 18px;
+            }
+            .content {
+                padding: 10px;
+            }
+            .stats .stat-item {
+                width: 150px;
+                padding: 15px;
+            }
+            .action-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li class="active"><i class="fas fa-home"></i> Tổng Quan</li>
+            <li><i class="fas fa-users"></i> Xem Thông Tin Khách Hàng</li>
+            <li><i class="fas fa-bell"></i> Quản Lý Nhắc Nhở</li>
+            <li><i class="fas fa-calendar-check"></i> Quản Lý Lịch Hẹn</li>
+            <li><i class="fas fa-chart-line"></i> Báo Cáo Doanh Thu</li>
+            <li><i class="fas fa-history"></i> Lịch Sử Sử Dụng Dịch Vụ Của Khách Hàng</li>
+            <li><i class="fas fa-heartbeat"></i> Xu Hướng Sức Khỏe Thú Cưng</li>
+            <li><i class="fas fa-sign-out-alt"></i> Đăng Xuất</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content-inner">
+            <h1>Nhân Viên</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>Lịch Hẹn Hôm Nay</h3>
+                    <p>30</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Nhắc Nhở Chưa Xử Lý</h3>
+                    <p>10</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Doanh Thu Tuần</h3>
+                    <p>50,000,000 VNĐ</p>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn">Xem Lịch Hẹn</button>
+                <button class="action-btn">Quản Lý Nhắc Nhở</button>
+                <button class="action-btn">Xem Báo Cáo</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
