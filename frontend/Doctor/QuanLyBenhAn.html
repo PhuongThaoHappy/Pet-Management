@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniPet - Quản Lý Bệnh Án Thú Cưng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f5f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 1400px;
+            padding: 30px;
+            background-image: url('../anh/Quản lý thú cưng.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-attachment: fixed;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+        }
+
+        .content-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 30px;
+            color: #333;
+        }
+
+        .content-inner h1 {
+            font-size: 42px;
+            color: #28a745;
+            margin: 0 0 30px;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Medical Records Table */
+        .medical-records-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .medical-records-table th,
+        .medical-records-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        .medical-records-table th {
+            background-color: #28a745;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .medical-records-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .medical-records-table button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-add {
+            background-color: #3498db;
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+        }
+
+        .btn-add:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-edit {
+            background-color: #f1c40f;
+        }
+
+        .btn-edit:hover {
+            background-color: #d4ac0d;
+        }
+
+        .btn-view {
+            background-color: #2ecc71;
+        }
+
+        .btn-view:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .status-pending {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .status-treated {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+            .content-inner h1 {
+                font-size: 32px;
+            }
+            .medical-records-table th,
+            .medical-records-table td {
+                padding: 12px;
+                font-size: 14px;
+            }
+            .medical-records-table th {
+                font-size: 16px;
+            }
+            .medical-records-table button {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            .btn-add {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="content-inner">
+            <h1>Quản Lý Bệnh Án Thú Cưng</h1>
+            <button class="btn-add">Thêm bệnh án</button>
+            <table class="medical-records-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên Thú Cưng</th>
+                        <th>Chủ Thú Cưng</th>
+                        <th>Chẩn Đoán</th>
+                        <th>Ngày Khám</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Miu</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>Viêm da</td>
+                        <td>2025-04-20</td>
+                        <td class="status-pending">Đang chờ</td>
+                        <td>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-view">Xem</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rex</td>
+                        <td>Trần Thị B</td>
+                        <td>Nhiễm trùng tai</td>
+                        <td>2025-04-21</td>
+                        <td class="status-treated">Đã điều trị</td>
+                        <td>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-view">Xem</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Luna</td>
+                        <td>Lê Văn C</td>
+                        <td>Tiêu hóa kém</td>
+                        <td>2025-04-22</td>
+                        <td class="status-pending">Đang chờ</td>
+                        <td>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-view">Xem</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Buddy</td>
+                        <td>Phạm Thị D</td>
+                        <td>Viêm khớp</td>
+                        <td>2025-04-23</td>
+                        <td class="status-treated">Đã điều trị</td>
+                        <td>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-view">Xem</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
