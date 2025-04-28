@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Lịch Hẹn - Chăm Sóc Thú Cưng</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-left img {
+      height: 60px;
+      margin-right: 20px;
+    }
+
+    .header-left h1 {
+      font-size: 28px;
+      color: #28a745;
+    }
+
+    .header-left p {
+      font-size: 16px;
+      color: #ff0000;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      color: #28a745;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    /* Table */
+    .appointment-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .appointment-table th,
+    .appointment-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .appointment-table th {
+      background-color: #28a745;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .appointment-table tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .appointment-table button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 14px;
+      margin-right: 5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-accept {
+      background-color: #78c53f;
+    }
+
+    .Anywhere {
+      color: #ffa500;
+    }
+
+    .Accepted {
+      color: #78c53f;
+    }
+
+    .Cancelled {
+      color: #ff0000;
+    }
+
+    .btn-cancel {
+      background-color: #ff0000;
+    }
+
+    .btn-delete {
+      background-color: #ffa500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .appointment-table th,
+      .appointment-table td {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .appointment-table button {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <img src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png" alt="Logo Chăm Sóc Thú Cưng">
+      <div>
+        <h1>Chăm Sóc Thú Cưng</h1>
+        <p>Quản Lý Lịch Hẹn</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h2>Quản Lý Lịch Hẹn</h2>
+    <table class="appointment-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên Thú Cưng</th>
+          <th>Chủ Nhân</th>
+          <th>Ngày</th>
+          <th>Giờ</th>
+          <th>Dịch Vụ</th>
+          <th>Trạng Thái</th>
+          <th>Hành Động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Miu</td>
+          <td>Nguyễn Văn A</td>
+          <td>2025-04-20</td>
+          <td>09:00</td>
+          <td>Chải lông</td>
+          <td class="Anywhere">Đang chờ</td>
+          <td>
+            <button class="btn-accept">Chấp nhận</button>
+            <button class="btn-cancel">Hủy</button>
+            <button class="btn-delete">Xóa</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Rex</td>
+          <td>Trần Thị B</td>
+          <td>2025-04-21</td>
+          <td>14:00</td>
+          <td>Thú y</td>
+          <td class="Anywhere">Đang chờ</td>
+          <td>
+            <button class="btn-accept">Chấp nhận</button>
+            <button class="btn-cancel">Hủy</button>
+            <button class="btn-delete">Xóa</button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Luna</td>
+          <td>Lê Văn C</td>
+          <td>2025-04-22</td>
+          <td>11:00</td>
+          <td>Trông giữ</td>
+          <td class="Accepted">Đã chấp nhận</td>
+          <td>
+            <button class="btn-cancel">Hủy</button>
+            <button class="btn-delete">Xóa</button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Buddy</td>
+          <td>Phạm Thị D</td>
+          <td>2025-04-23</td>
+          <td>15:00</td>
+          <td>Huấn luyện</td>
+          <td class="Cancelled">Đã hủy</td>
+          <td>
+            <button class="btn-delete">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
