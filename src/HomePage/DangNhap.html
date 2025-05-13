@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="./cssLogin/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img src="./cssLogin/login.jpg" alt="Mèo đeo kính mát" class="cat-image">
+        </div>
+        <div class="right-side">
+            <div class="form-container sign-in-form active">
+                <h2>Đăng Nhập</h2>
+                <p>Đăng nhập bằng thông tin đã đăng ký</p>
+                <div class="form-group">
+                    <label for="email">ĐỊA CHỈ EMAIL</label>
+                    <input type="email" id="email" placeholder="vidu@vidu.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">MẬT KHẨU</label>
+                    <input type="password" id="password" placeholder="Mật khẩu">
+                </div>
+                <div class="options">
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Nhớ mật khẩu</label>
+                    </div>
+                    <a href="#">Quên Mật Khẩu?</a>
+                </div>
+                <button onclick="login()">ĐĂNG NHẬP</button>
+                <div class="links">
+                    <p>Khách hàng mới? <a href="#" onclick="showSignUp()">Tạo tài khoản</a></p>
+                </div>
+                <div class="links">
+                    <p><a href="#" onclick="goBack()">Quay lại trang web</a></p>
+                </div>
+            </div>
+            <div class="form-container sign-up-form">
+                <h2>Đăng Ký</h2>
+                <p>Tạo tài khoản mới</p>
+                <div class="form-group">
+                    <label for="first-name">TÊN</label>
+                    <input type="text" id="first-name" placeholder="Tên của bạn">
+                </div>
+                <div class="form-group">
+                    <label for="full-name">HỌ VÀ TÊN</label>
+                    <input type="text" id="full-name" placeholder="Họ và tên đầy đủ">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">ĐỊA CHỈ EMAIL</label>
+                    <input type="email" id="signup-email" placeholder="vidu@vidu.com">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">MẬT KHẨU</label>
+                    <input type="password" id="signup-password" placeholder="Mật khẩu">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">XÁC NHẬN MẬT KHẨU</label>
+                    <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu">
+                </div>
+                <button onclick="signUp()">ĐĂNG KÝ</button>
+                <div class="links">
+                    <p>Đã có tài khoản? <a href="#" onclick="showSignIn()">Quay lại Đăng Nhập</a></p>
+                    <p><a href="#" onclick="goBack()">Quay lại trang web</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showSignUp() {
+            document.querySelector('.sign-in-form').classList.remove('active');
+            document.querySelector('.sign-up-form').classList.add('active');
+        }
+
+        function showSignIn() {
+            document.querySelector('.sign-up-form').classList.remove('active');
+            document.querySelector('.sign-in-form').classList.add('active');
+        }
+
+        function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if (email && password) {
+        localStorage.setItem('isLoggedIn', 'true'); 
+        alert(`Đăng nhập thành công với email: ${email}`);
+        window.location.href = 'HomePage.html'; 
+    } else {
+        alert('Vui lòng nhập đầy đủ thông tin!');
+    }
+}
+
+function signUp() {
+    const firstName = document.getElementById('first-name').value;
+    const fullName = document.getElementById('full-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    if (firstName && fullName && email && password && confirmPassword) {
+        if (password === confirmPassword) {
+            localStorage.setItem('isLoggedIn', 'true'); 
+            alert(`Đăng ký thành công với email: ${email}`);
+            window.location.href = 'HomePage.html'; 
+        } else {
+            alert('Mật khẩu và xác nhận mật khẩu không khớp!');
+        }
+    } else {
+        alert('Vui lòng nhập đầy đủ thông tin!');
+    }
+}
+
+        function goBack() {
+            window.location.href = 'HomePage.html';
+        }
+    </script>
+</body>
+</html>
