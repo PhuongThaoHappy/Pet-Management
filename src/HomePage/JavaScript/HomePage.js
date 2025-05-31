@@ -88,55 +88,95 @@ function confirmBooking() {
     }
 }
 
-function handleLogin() {
-    window.location.href = "DangNhap.html";
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.querySelector('.login');
-    if (loginButton) {
-        loginButton.addEventListener('click', handleLogin);
-    }
-});
-// đăng xuất
+// Quản lý đăng nhập/đăng xuất
 function updateLoginButton() {
-    const loginButton = document.querySelector('.login');
-    if (!loginButton) return;
-
+    const loginText = document.getElementById('login-text');
+    const loginBtn = document.getElementById('login-btn');
+    const dropdownMenu = document.getElementById('dropdown-menu');
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const username = localStorage.getItem('username');
 
-    if (isLoggedIn) {
-        loginButton.querySelector('span').textContent = 'Đăng xuất';
-        loginButton.removeEventListener('click', handleLogin);
-        loginButton.addEventListener('click', handleLogout);
+    if (!loginBtn || !loginText || !dropdownMenu) {
+        console.error('Không tìm thấy loginBtn, loginText hoặc dropdownMenu');
+        return;
+    }
+
+    // Xóa sự kiện cũ
+    loginBtn.onclick = null;
+    loginBtn.removeEventListener('click', handleLogin);
+    loginBtn.removeEventListener('click', toggleDropdown);
+
+    if (isLoggedIn && username) {
+        loginText.textContent = username;
+        loginBtn.addEventListener('click', toggleDropdown);
     } else {
-        loginButton.querySelector('span').textContent = 'Đăng nhập';
-        loginButton.removeEventListener('click', handleLogout);
-        loginButton.addEventListener('click', handleLogin);
+        loginText.textContent = 'Đăng nhập';
+        loginBtn.addEventListener('click', handleLogin);
     }
 }
 
 function handleLogin() {
-    window.location.href = "DangNhap.html"; 
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) {
+        console.log('Chưa đăng nhập, chuyển hướng đến DangNhap.html...');
+        window.location.href = "DangNhap.html";
+    } else {
+        console.log('Đã đăng nhập, không cần chuyển hướng.');
+    }
 }
+
+
+
 
 function handleLogout() {
-    localStorage.setItem('isLoggedIn', 'false'); 
-    updateLoginButton(); // Cập nhật nút
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('username');
+    updateLoginButton();
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    if (dropdownMenu) {
+        dropdownMenu.classList.remove('active');
+    }
+
     alert('Bạn đã đăng xuất thành công!');
 }
 
+
+function toggleDropdown() {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    dropdownMenu.classList.toggle('active');
+}
+
+document.addEventListener('click', (event) => {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const loginBtn = document.getElementById('login-btn');
+    if (!loginBtn.contains(event.target)) {
+        dropdownMenu.classList.remove('active');
+    }
+});
+
+window.onload = () => {
+    console.log('Trang đã tải hoàn tất (window.onload), gọi updateLoginButton...');
+    updateLoginButton();
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-    updateLoginButton(); 
-    const loginButton = document.querySelector('.login');
-    if (loginButton) {
-        loginButton.addEventListener('click', () => {
+    console.log('Trang đã tải hoàn tất (DOMContentLoaded), gọi updateLoginButton...');
+    updateLoginButton();
+});
+// thông tin tìa khoản
+document.addEventListener('DOMContentLoaded', () => {
+    // Cập nhật nút Thông tin tài khoản để kiểm tra đăng nhập trước khi chuyển trang
+    const accountBtn = document.getElementById('account-info-btn');
+    if (accountBtn) {
+        accountBtn.addEventListener('click', () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (!isLoggedIn) {
-                handleLogin();
+            if (isLoggedIn) {
+                window.location.href = 'ThongTinTK.html'; 
             } else {
-                handleLogout();
+                alert('Bạn chưa đăng nhập!');
+                window.location.href = 'DangNhap.html';
             }
         });
     }
 });
+

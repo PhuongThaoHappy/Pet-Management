@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PETCARE</title>
-    <link rel="stylesheet" href="./cssHomePage/HomePage.css">
+    <link rel="stylesheet" href="../CSS/HomePage.css">
 </head>
 <body>
     <div class="container">
@@ -16,13 +16,23 @@
                 <a href="#session3">Về chúng tôi</a>
                 <a href="#session4">Liên hệ</a>
             </div>
-            <button class="login">
-                <span id="login-text">Đăng nhập</span>
-                <svg id="login-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a1dfff" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 16v-4m0 0V8m0 4h4m-4 0H8"/>
-                </svg>
-            </button>
+            <div class="login-area">
+                <button class="login-btn" id="login-btn">
+                    <span id="login-text">Đăng nhập</span>
+                </button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <button class="dropdown-item" onclick="handleLogout()">Đăng xuất</button>
+                    <button class="dropdown-item" onclick="window.location.href='ThongTinThuCung.html'">
+                        Thông tin thú cưng
+                    </button>
+                    <button class="dropdown-item" id="account-info-btn">
+                        Thông tin tài khoản
+                    </button>
+                    <button class="dropdown-item" onclick="window.location.href='LichSuDichVuVaSucKhoe.html'">
+                        Lịch sử dịch vụ &amp; sức khỏe
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Session 1: HomePage -->
@@ -33,7 +43,7 @@
                 <a href="#session2" class="button">Đặt lịch ngay</a>
             </div>
             <div class="image-container">
-                <img src="./images/Bác sĩ.jpg" alt="Bác sĩ thú y với chó">
+                <img src="../images/Bác sĩ.jpg" alt="Bác sĩ thú y với chó">
             </div>
             <div class="decor decor-1"></div>
             <div class="decor decor-2"></div>
@@ -165,6 +175,6 @@
 
     <div class="notification" id="notification"></div>
 
-    <script src="./cssHomePage/HomePage.js"></script>
+    <script src="../JavaScript/HomePage.js"></script>
 </body>
 </html>
